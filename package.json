@@ -1,0 +1,15 @@
+{
+  "name": "monaco-editor",
+  "version": "0.2.2",
+  "description": "A browser based code editor",
+  "author": "Microsoft Corporation",
+  "license": "MIT",
+  "scripts": {
+    "simpleserver": "node_modules/.bin/http-server -c-1 ../"
+  },
+  "devDependencies": {
+    "http-server": "^0.9.0",
+    "monaco-editor-core": "^0.2.2",
+    "monaco-typescript": "0.0.4"
+  }
+}
