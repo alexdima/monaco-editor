@@ -2,35 +2,6 @@
 
 define([], function() {
 
-	function xhr(url) {
-		var req = null;
-		return new monaco.Promise(function(c,e,p) {
-			req = new XMLHttpRequest();
-			req.onreadystatechange = function () {
-				if (req._canceled) { return; }
-
-				if (req.readyState === 4) {
-					if ((req.status >= 200 && req.status < 300) || req.status === 1223) {
-						c(req);
-					} else {
-						e(req);
-					}
-					req.onreadystatechange = function () { };
-				} else {
-					p(req);
-				}
-			};
-
-			req.open("GET", url, true );
-			req.responseType = "";
-
-			req.send(null);
-		}, function () {
-			req._canceled = true;
-			req.abort();
-		});
-	}
-
 	var samples = [];
 
 	var modesIds = monaco.languages.getLanguages().map(function(language) { return language.id; });
@@ -268,4 +239,33 @@ define([], function() {
 	addXHRSample('Z___f12___css','run-editor-sample-f12-css.txt','text/css');
 
 	return samples;
+
+	function xhr(url) {
+		var req = null;
+		return new monaco.Promise(function(c,e,p) {
+			req = new XMLHttpRequest();
+			req.onreadystatechange = function () {
+				if (req._canceled) { return; }
+
+				if (req.readyState === 4) {
+					if ((req.status >= 200 && req.status < 300) || req.status === 1223) {
+						c(req);
+					} else {
+						e(req);
+					}
+					req.onreadystatechange = function () { };
+				} else {
+					p(req);
+				}
+			};
+
+			req.open("GET", url, true );
+			req.responseType = "";
+
+			req.send(null);
+		}, function () {
+			req._canceled = true;
+			req.abort();
+		});
+	}
 });

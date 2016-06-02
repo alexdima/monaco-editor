@@ -3,11 +3,27 @@
 <head>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-	<link rel="stylesheet" href="./index.css" />
+	<style>
+		#errors {
+			position:fixed;
+			top:0;
+			right:0;
+			font-size: 20px;
+			width: 100px;
+			height: 100px;
+		}
+		body {
+			height: 100%;
+		}
+		#editor {
+			float:left;
+			width: 1250px;
+		}
+	</style>
 </head>
 <body>
 
-<h2>Monaco Editor (running from release)</h2>
+<h2>Smoke Test (running from release)</h2>
 
 <a href="./index.html">[MULTIPLE SOURCES]</a>
 &nbsp;|&nbsp;
@@ -16,10 +32,9 @@
 <a href="./smoketest-release.html">[SMOKETEST]</a>
 <br/><br/>
 
-<div id="bar" style="margin-bottom: 6px;"></div>
-<div style="clear:both"></div>
-<div id="container" style="float:left;width:800px;height:450px;border: 1px solid grey"></div>
-<div id="options" style="float:left;width:220px;height:450px;border: 1px solid grey"></div>
+<div id="control"></div>
+<div id="editor"></div>
+<div id="errors"></div>
 <div style="clear:both"></div>
 
 <script src="../release/min/vs/loader.js"></script>
@@ -30,7 +45,7 @@
 		}
 	});
 	require(['vs/editor/editor.main'], function() {
-		require(['./index'], function() {});
+		require(['./smoketest'], function() {});
 	});
 </script>
 
