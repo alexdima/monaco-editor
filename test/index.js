@@ -103,7 +103,7 @@ function updateEditor(mode, value, sampleName) {
 			oldModel.dispose();
 		}
 	} else {
-		model.setMode(monaco.editor.getOrCreateMode(mode));
+		monaco.editor.setModelLanguage(model, mode);
 	}
 
 	modesComboBox.set(mode);
