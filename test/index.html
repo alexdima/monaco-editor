@@ -27,40 +27,43 @@
 <div id="options" style="float:right;width:220px;height:450px;border: 1px solid grey"></div>
 <div style="clear:both"></div>
 
+<script src="../metadata.js"></script>
+
 <script>
 	var RUN_EDITOR_FROM_SOURCE = false; // should run the editor from source? (or from the node module)
 	var RUN_PLUGINS_FROM_SOURCE = false; // should run the editor plugins from source? (or from node modules)
 
-	var PLUGINS = [{
-		contrib: 'vs/language/typescript/src/monaco.contribution',
-		modulePrefix: 'vs/language/typescript',
-		path: '/monaco-editor/node_modules/monaco-typescript/release',
-		srcPath: '/monaco-typescript/out'
-	}];
-
+	// Resolve paths
 	if (RUN_EDITOR_FROM_SOURCE) {
-		document.write('<script type="text/javascript" src="/vscode/out/vs/loader.js"><'+'/script>');
+		METADATA.CORE.path = METADATA.CORE.srcPath;
 	} else {
-		document.write('<script type="text/javascript" src="/monaco-editor/node_modules/monaco-editor-core/dev/vs/loader.js"><'+'/script>');
+		METADATA.CORE.path = '/monaco-editor/' + METADATA.CORE.path;
 	}
-
-	var allPluginContribs = [];
-	var pathsConfig = {};
-	PLUGINS.forEach(function(plugin) {
-		allPluginContribs.push(plugin.contrib);
-		pathsConfig[plugin.modulePrefix] = RUN_PLUGINS_FROM_SOURCE ? plugin.srcPath : plugin.path;
+	METADATA.PLUGINS.forEach(function(plugin) {
+		if (RUN_PLUGINS_FROM_SOURCE) {
+			plugin.path = plugin.srcPath;
+		} else {
+			plugin.path = '/monaco-editor/' + plugin.path;
+		}
 	});
-	pathsConfig['vs'] = RUN_EDITOR_FROM_SOURCE ? '/vscode/out/vs' : '/monaco-editor/node_modules/monaco-editor-core/dev/vs';
 </script>
 
+<script>document.write('<script type="text/javascript" src="' + METADATA.CORE.path + '/loader.js"><'+'/script>');</script>
+
 <script>
-	console.log('paths: ', pathsConfig);
+	var pathsConfig = {};
+	METADATA.PLUGINS.forEach(function(plugin) {
+		pathsConfig[plugin.modulePrefix] = plugin.path;
+	});
+	pathsConfig['vs'] = METADATA.CORE.path;
+
 	require.config({
 		paths: pathsConfig
 	});
+
 	require(['vs/editor/editor.main'], function() {
 		// At this point we've loaded the monaco-editor-core
-		require(allPluginContribs, function() {
+		require(METADATA.PLUGINS.map(function(plugin) { return plugin.contrib; }), function() {
 			// At this point we've loaded all the plugins
 			require(['./index'], function() {});
 		});
