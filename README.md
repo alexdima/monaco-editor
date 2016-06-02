@@ -97,5 +97,30 @@ If you are hosting your `.js` on a different domain (e.g. on a CDN) than the HTM
 -->
 ```
 
+## FAQ
+
+* Q: What is the relationship between VS Code and the Monaco Editor?
+* A: The Monaco Editor is generated straight from VS Code's sources with some shims around services the code needs to make it run in a web browser outside of its home.
+
+<br/>
+* Q: What is the relationship between VS Code's version and the Monaco Editor's version?
+* A: None. The Monaco Editor is a library and it reflects directly the source code. It will therefore break far more often than the API of VS Code, especially if we need to break it to make things fast, work better in VS Code, etc. But the editor has overall a pretty steady battle-tested API.
+
+<br/>
+* Q: I've written an extension for VS Code, will it work on the Monaco Editor in a browser?
+* A: No.
+
+<br/>
+* Q: Why all these web workers and why should I care?
+* A: Language services create web workers to compute heavy stuff outside the UI thread. They cost hardly anything in terms of resource overhead and you shouldn't worry too much about them, as long as you get them to work (see above the cross-domain case).
+
+<br/>
+* Q: Why is this thing so big?
+* A: It contains a lot of features.
+
+<br/>
+* Q: What is this `loader.js`? Can I use `require.js`?
+* A: It is an AMD loader that we use in VS Code. Yes.
+
 ## License
 MIT
