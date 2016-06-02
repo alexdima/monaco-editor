@@ -7,14 +7,31 @@ var fs = require('fs');
 
 gulp.task('release', function() {
 	return es.merge(
+
+		// dev folder
 		releaseOne('dev'),
+
+		// min folder
 		releaseOne('min'),
+
+		// package.json
+		gulp.src('package.json')
+			.pipe(es.through(function(data) {
+				var json = JSON.parse(data.contents.toString());
+				json.private = false;
+				data.contents = new Buffer(JSON.stringify(json, null, '  '));
+				this.emit('data', data);
+			}))
+			.pipe(gulp.dest('release')),
+
+		// min-maps folder
 		gulp.src('node_modules/monaco-editor-core/min-maps/**/*').pipe(gulp.dest('release/min-maps')),
+
+		// other files
 		gulp.src([
 			'node_modules/monaco-editor-core/LICENSE',
 			'node_modules/monaco-editor-core/monaco.d.ts',
-			'node_modules/monaco-editor-core/ThirdPartyNotices.txt',
-			'package.json'
+			'node_modules/monaco-editor-core/ThirdPartyNotices.txt'
 		]).pipe(gulp.dest('release'))
 	)
 });
