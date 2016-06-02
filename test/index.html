@@ -3,28 +3,15 @@
 <head>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-	<style type="text/css">
-		.monaco-editor .token.custom-info {
-			color: grey !important;
-		}
-		.monaco-editor .token.custom-error {
-			color: red !important;
-			font-weight: bold !important;
-			font-size: 1.2em !important;
-		}
-		.monaco-editor .token.custom-notice {
-			color: orange !important;
-		}
-		.monaco-editor .token.custom-date {
-			color: green !important;
-		}
-	</style>
+	<link rel="stylesheet" href="./index.css" />
 </head>
 <body>
 
+<h2>Monaco Editor (running from multiple sources)</h2><a href="./index-release.html">[RUN RELEASED]</a><br/><br/>
 <div id="bar" style="margin-bottom: 6px;"></div>
+<div style="clear:both"></div>
 <div id="container" style="float:left;width:800px;height:450px;border: 1px solid grey"></div>
-<div id="options" style="float:right;width:220px;height:450px;border: 1px solid grey"></div>
+<div id="options" style="float:left;width:220px;height:450px;border: 1px solid grey"></div>
 <div style="clear:both"></div>
 
 <script src="../metadata.js"></script>
@@ -48,7 +35,7 @@
 	});
 </script>
 
-<script>document.write('<script type="text/javascript" src="' + METADATA.CORE.path + '/loader.js"><'+'/script>');</script>
+<script>document.write('<script src="' + METADATA.CORE.path + '/loader.js"><'+'/script>');</script>
 
 <script>
 	var pathsConfig = {};

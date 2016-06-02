@@ -8,6 +8,8 @@
     "simpleserver": "node_modules/.bin/http-server -c-1 ../"
   },
   "devDependencies": {
+    "event-stream": "^3.3.2",
+    "gulp": "^3.9.1",
     "http-server": "^0.9.0",
     "monaco-editor-core": "^0.2.2",
     "monaco-typescript": "0.0.4"

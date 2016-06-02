@@ -18,4 +18,5 @@
 	} else {
 		self.METADATA = METADATA;
 	}
+
 })();

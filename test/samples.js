@@ -33,30 +33,20 @@ define([], function() {
 
 	var samples = [];
 
-	// var winjs = require('vs/base/common/winjs.base');
-	// var ModesRegistry = require('vs/editor/common/modes/modesRegistry').ModesRegistry;
+	var modesIds = monaco.languages.getLanguages().map(function(language) { return language.id; });
+	modesIds.sort();
 
-	// var modesRegistry = require('vs/editor/common/modes/modesRegistry').ModesRegistry;
-	// var modesIds = (
-	// 	[].concat(
-	// 		modesRegistry.getCompatModes().map(function (mode) { return mode.id; })
-	// 	).concat(
-	// 		modesRegistry.getLanguages().map(function (mode) { return mode.id; })
-	// 	)
-	// );
-	// modesIds.sort();
-
-	// modesIds.forEach(function(modeId) {
-	// 	samples.push({
-	// 		name: 'sample - ' + modeId,
-	// 		mimeType: modeId,
-	// 		loadText: function() {
-	// 			return winjs.xhr({ url: '../../website/index/samples/sample.' + modeId + '.txt' }).then(function(xhrResponse) {
-	// 				return xhrResponse.responseText;
-	// 			});
-	// 		}
-	// 	});
-	// });
+	modesIds.forEach(function(modeId) {
+		samples.push({
+			name: 'sample - ' + modeId,
+			mimeType: modeId,
+			loadText: function() {
+				return xhr('samples/sample.' + modeId + '.txt').then(function(xhrResponse) {
+					return xhrResponse.responseText;
+				});
+			}
+		});
+	});
 
 	function addXHRSample(name, modelUrl, mimeType, textModifier) {
 		textModifier = textModifier || function(text) { return text; };

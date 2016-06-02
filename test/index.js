@@ -63,12 +63,9 @@ var examplesComboBox = new ComboBox('Template', samplesData);
 
 
 var modesData = {};
-// MODES_REGISTRY.getCompatModes().forEach(function(compatMode) {
-// 	modesData[compatMode.id] = updateEditor.bind(this, compatMode.id);
-// });
-// MODES_REGISTRY.getLanguages().forEach(function(lang) {
-// 	modesData[lang.id] = updateEditor.bind(this, lang.id);
-// });
+monaco.languages.getLanguages().forEach(function(language) {
+	modesData[language.id] = updateEditor.bind(this, language.id);
+});
 var modesComboBox = new ComboBox ('Mode', modesData);
 
 
