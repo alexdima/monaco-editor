@@ -31,7 +31,8 @@ gulp.task('release', function() {
 		gulp.src([
 			'node_modules/monaco-editor-core/LICENSE',
 			'node_modules/monaco-editor-core/monaco.d.ts',
-			'node_modules/monaco-editor-core/ThirdPartyNotices.txt'
+			'node_modules/monaco-editor-core/ThirdPartyNotices.txt',
+			'README.md'
 		]).pipe(gulp.dest('release'))
 	)
 });
