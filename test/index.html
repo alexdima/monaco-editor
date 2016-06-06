@@ -26,7 +26,9 @@
 
 <script>
 	var RUN_EDITOR_FROM_SOURCE = false; // should run the editor from source? (or from the node module)
-	var RUN_PLUGINS_FROM_SOURCE = false; // should run the editor plugins from source? (or from node modules)
+	var RUN_PLUGINS_FROM_SOURCE = {}; // should run the editor plugins from source? (or from node modules)
+	RUN_PLUGINS_FROM_SOURCE['monaco-typescript'] = false;
+	RUN_PLUGINS_FROM_SOURCE['monaco-languages'] = false;
 
 	// Resolve paths
 	if (RUN_EDITOR_FROM_SOURCE) {
@@ -35,7 +37,7 @@
 		METADATA.CORE.path = '/monaco-editor/' + METADATA.CORE.path;
 	}
 	METADATA.PLUGINS.forEach(function(plugin) {
-		if (RUN_PLUGINS_FROM_SOURCE) {
+		if (RUN_PLUGINS_FROM_SOURCE[plugin.name]) {
 			plugin.path = plugin.srcPath;
 		} else {
 			plugin.path = '/monaco-editor/' + plugin.path;

@@ -13,7 +13,9 @@
     "event-stream": "^3.3.2",
     "gulp": "^3.9.1",
     "http-server": "^0.9.0",
-    "monaco-editor-core": "0.2.3",
-    "monaco-typescript": "0.0.6"
+    "monaco-editor-core": "0.3.0",
+    "monaco-languages": "0.0.1",
+    "monaco-typescript": "0.0.6",
+    "rimraf": "^2.5.2"
   }
 }

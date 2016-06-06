@@ -6,10 +6,17 @@
 			srcPath: '/vscode/out/vs'
 		},
 		PLUGINS: [{
+			name: 'monaco-typescript',
 			contrib: 'vs/language/typescript/src/monaco.contribution',
 			modulePrefix: 'vs/language/typescript',
 			path: 'node_modules/monaco-typescript/release',
 			srcPath: '/monaco-typescript/out'
+		}, {
+			name: 'monaco-languages',
+			contrib: 'vs/basic-languages/src/monaco.contribution',
+			modulePrefix: 'vs/basic-languages',
+			path: 'node_modules/monaco-languages/release',
+			srcPath: '/monaco-languages/out'
 		}]
 	}
 

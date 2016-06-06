@@ -4,8 +4,10 @@ var metadata = require('./metadata');
 var es = require('event-stream');
 var path = require('path');
 var fs = require('fs');
+var rimraf = require('rimraf');
 
-gulp.task('release', function() {
+gulp.task('clean-release', function(cb) { rimraf('release', { maxBusyTries: 1 }, cb); });
+gulp.task('release', ['clean-release'], function() {
 	return es.merge(
 
 		// dev folder
