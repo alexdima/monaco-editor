@@ -4,6 +4,7 @@
 		CORE: {
 			path: 'node_modules/monaco-editor-core/min/vs',
 			srcPath: '/vscode/out/vs'
+			// srcPath: '/vscode/out-monaco-editor-core/min/vs'
 		},
 		PLUGINS: [{
 			name: 'monaco-typescript',

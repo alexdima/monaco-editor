@@ -11,7 +11,11 @@ var editor = monaco.editor.create(document.getElementById('container'), {
 	glyphMargin: true,
 	wrappingColumn: WRAPPING_COLUMN,
 	outlineMarkers: false,
-	renderWhitespace: true
+	renderWhitespace: true,
+	// scrollbar: {
+	// 	verticalHasArrows: true,
+	// 	horizontalHasArrows: true
+	// }
 });
 
 editor.addCommand({
