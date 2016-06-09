@@ -7,8 +7,9 @@ The Monaco Editor is the code editor that powers [VS Code](https://github.com/Mi
 ## Issues
 
 This repository contains only the scripts to glue things together, please create issues against the actual repositories where the source code lives:
- * [monaco-editor-core](https://www.npmjs.com/package/monaco-editor-core) - [Issues](https://github.com/Microsoft/vscode)
- * [monaco-typescript](https://www.npmjs.com/package/monaco-typescript) - [Issues](https://github.com/alexandrudima/monaco-typescript)
+ * monaco-editor-core: [Issues](https://github.com/Microsoft/vscode) -- [npm module](https://www.npmjs.com/package/monaco-editor-core) (Issues with the editor itself)
+ * monaco-typescript: [Issues](https://github.com/Microsoft/monaco-typescript) -- [npm module](https://www.npmjs.com/package/monaco-typescript) (Issues with JavaScript or TypeScript language support)
+ * monaco-languages: [Issues](https://github.com/Microsoft/monaco-languages) -- [npm module](https://www.npmjs.com/package/monaco-languages) (Issues with bat, coffee script, cpp, csharp, fsharp, go, ini, jade, lua, objective-c, powershell, python, r, ruby, sql, swift, vb or xml)
 
 ## Known issues
 In IE, the editor must be completely surrounded in the body element, otherwise the hit testing we do for mouse operations does not work. You can inspect this using F12 and clicking on the body element and confirm that visually it surrounds the editor.
@@ -29,7 +30,7 @@ It is recommended to develop against the `dev` version, and in production to use
 
 ## Integrate
 
-Here is the most basic HTML page that embeds the editor. More samples are available at [monaco-editor-samples](https://github.com/alexandrudima/monaco-editor-samples).
+Here is the most basic HTML page that embeds the editor. More samples are available at [monaco-editor-samples](https://github.com/Microsoft/monaco-editor-samples).
 
 ```html
 <!DOCTYPE html>
@@ -104,7 +105,7 @@ If you are hosting your `.js` on a different domain (e.g. on a CDN) than the HTM
 
 <br/>
 * Q: What is the relationship between VS Code's version and the Monaco Editor's version?
-* A: None. The Monaco Editor is a library and it reflects directly the source code. It will therefore break far more often than the API of VS Code, especially if we need to break it to make things fast, work better in VS Code, etc. But the editor has overall a pretty steady battle-tested API.
+* A: None. The Monaco Editor is a library and it reflects directly the source code.
 
 <br/>
 * Q: I've written an extension for VS Code, will it work on the Monaco Editor in a browser?
@@ -115,12 +116,8 @@ If you are hosting your `.js` on a different domain (e.g. on a CDN) than the HTM
 * A: Language services create web workers to compute heavy stuff outside the UI thread. They cost hardly anything in terms of resource overhead and you shouldn't worry too much about them, as long as you get them to work (see above the cross-domain case).
 
 <br/>
-* Q: Why is this thing so big?
-* A: It contains a lot of features.
-
-<br/>
 * Q: What is this `loader.js`? Can I use `require.js`?
 * A: It is an AMD loader that we use in VS Code. Yes.
 
 ## License
-MIT
+[MIT](https://github.com/Microsoft/monaco-editor/blob/master/LICENSE.md)
